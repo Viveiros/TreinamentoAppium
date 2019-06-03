@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.com.serpro.appiumCore.BasePage;
-import br.com.serpro.appiumCore.DriverFactory;
 
 public class SplashPage extends BasePage{
 	
