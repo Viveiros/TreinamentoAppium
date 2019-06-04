@@ -9,15 +9,16 @@ import org.junit.Test;
 import br.com.serpro.appiumCore.BaseTest;
 import br.com.serpro.pages.FormularioPage;
 import br.com.serpro.pages.MenuPage;
+import io.appium.java_client.MobileBy;
 
 public class FormularioTeste extends BaseTest{
 	
-	private MenuPage menu = new MenuPage();
-	private FormularioPage formulario = new FormularioPage();
+	private MenuPage menuPage = new MenuPage();
+	private FormularioPage formularioPage = new FormularioPage();
 	
 	@Before
 	public void inicializarAppium() throws MalformedURLException {
-		menu.acessarFormulario();
+		menuPage.acessarFormulario();
 	}
 	
 	
@@ -31,9 +32,9 @@ public class FormularioTeste extends BaseTest{
 //	    Acionar item do menu Formulário
 //	    elementosEncontrados.get(1).click();
 		
-		formulario.escreverNome("André Viveiros");
+		formularioPage.escreverNome("André Viveiros");
 	    
-	    Assert.assertEquals("André Viveiros", formulario.obterNome());
+	    Assert.assertEquals("André Viveiros", formularioPage.obterNome());
 	    
 
 	}
@@ -43,9 +44,9 @@ public class FormularioTeste extends BaseTest{
 	public void devePreencherCombo() throws MalformedURLException {
 
 	    
-		formulario.selecionarComboConsole("PS4");
+		formularioPage.selecionarComboConsole("PS4");
 		
-	    Assert.assertEquals("PS4", formulario.obterTextoConsole());
+	    Assert.assertEquals("PS4", formularioPage.obterTextoConsole());
 
 	}
 	
@@ -53,32 +54,50 @@ public class FormularioTeste extends BaseTest{
 	public void deveUsarCheckBoxSwitch() throws MalformedURLException {
 
 	    
-	    Assert.assertEquals(false, formulario.isCheckMarcado() ); 
-	    Assert.assertEquals(true, formulario.isSwitchMarcado()); 
+	    Assert.assertEquals(false, formularioPage.isCheckMarcado() ); 
+	    Assert.assertEquals(true, formularioPage.isSwitchMarcado()); 
 	    
-	    formulario.clicarCheck();
-	    formulario.clicarSwitch();
+	    formularioPage.clicarCheck();
+	    formularioPage.clicarSwitch();
 	    
-	    Assert.assertEquals(true, formulario.isCheckMarcado()); 
-	    Assert.assertEquals(false, formulario.isSwitchMarcado());
+	    Assert.assertEquals(true, formularioPage.isCheckMarcado()); 
+	    Assert.assertEquals(false, formularioPage.isSwitchMarcado());
 	    
 	}
 	
 	@Test
 	public void salvarFormlario() throws MalformedURLException {
 	    
-		formulario.escreverNome("André Pereira Viveiros");
-		formulario.clicarCheck();
-		formulario.clicarSwitch();
-	    formulario.selecionarComboConsole("PS4");
+		formularioPage.escreverNome("André Pereira Viveiros");
+		formularioPage.clicarCheck();
+		formularioPage.clicarSwitch();
+	    formularioPage.selecionarComboConsole("PS4");
 
-	    formulario.Salvar();
+	    formularioPage.Salvar();
 	    
-	    Assert.assertEquals("André Pereira Viveir", formulario.obterNome());
-	    Assert.assertEquals("Console: ps4", formulario.obterConsoleCadastrado());
-	    Assert.assertEquals("Switch: Off", formulario.obterSwitchCadastrado());
-	    Assert.assertEquals("Checkbox: Marcado", formulario.obterCheckboxCadastrado());
+	    Assert.assertEquals("André Pereira Viveir", formularioPage.obterNome());
+	    Assert.assertEquals("Console: ps4", formularioPage.obterConsoleCadastrado());
+	    Assert.assertEquals("Switch: Off", formularioPage.obterSwitchCadastrado());
+	    Assert.assertEquals("Checkbox: Marcado", formularioPage.obterCheckboxCadastrado());
 	    
 	}
+	
+	@Test
+	public void testarDeveAlerarData() {
+		formularioPage.clicarPorTexto("01/01/2000");
+		formularioPage.clicarPorTexto("20");
+		formularioPage.clicarPorTexto("OK");
+		Assert.assertTrue(formularioPage.existeElementoPorTexto("20/2/2000"));
+		
+	}
+	@Test
+	public void testarDeveAlerarHora() {
+		formularioPage.clicarPorTexto("06:00");
+		formularioPage.clicar(MobileBy.AccessibilityId("14"));
+		formularioPage.clicar(MobileBy.AccessibilityId("10"));
+		formularioPage.clicarPorTexto("OK");
+		Assert.assertTrue(formularioPage.existeElementoPorTexto("14:10"));
+		
+	}	
 
 }

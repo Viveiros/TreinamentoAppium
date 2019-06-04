@@ -25,4 +25,12 @@ public class AlertaTest extends BaseTest{
 		
 	}
 
+	@Test
+	public void deveClicarForaAlert() {
+		menuPage.acessarAlerta();
+		alertaPage.clicarAlertaSimples();
+		esperar(1000);
+		alertaPage.tap(100, 150);
+		Assert.assertFalse(alertaPage.existeElementoPorTexto("Pode clicar no OK ou fora da caixa para sair"));
+	}	
 }

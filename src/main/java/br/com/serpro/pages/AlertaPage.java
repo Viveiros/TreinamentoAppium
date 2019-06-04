@@ -8,6 +8,9 @@ public class AlertaPage extends BasePage {
 	public void clicarAlertaConfirm() {
 		clicarPorTexto("ALERTA CONFIRM");
 	}
+	public void clicarAlertaSimples() {
+		clicarPorTexto("ALERTA SIMPLES");
+	}	
 	public String obterTextoTitulo() {
 		return obterTexto(By.id("android:id/alertTitle"));
 	}

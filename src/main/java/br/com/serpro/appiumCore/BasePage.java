@@ -7,6 +7,9 @@ import java.util.List;
 import org.openqa.selenium.By;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.TapOptions;
+import io.appium.java_client.touch.offset.PointOption;
 
 public class BasePage {
 	public void escrever(By by, String texto) {
@@ -38,4 +41,8 @@ public class BasePage {
 		return !elementos.isEmpty();
 		
 	}
+	public void tap(int xPoint, int yPoint) {
+		new TouchAction(getDriver()).tap(PointOption.point(xPoint, yPoint)).perform();
+	}
+	
 }

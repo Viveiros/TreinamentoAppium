@@ -35,4 +35,11 @@ public class BaseTest {
 		}
 		
 	}
+	public void esperar(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }
