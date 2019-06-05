@@ -13,9 +13,9 @@ import io.appium.java_client.remote.MobileCapabilityType;
 public class DriverFactory {
 	
 	
-	private static AndroidDriver<MobileElement> driver;
+	private static AndroidDriver driver;
 	
-	public static AndroidDriver<MobileElement> getDriver(){
+	public static AndroidDriver getDriver(){
 		if (driver == null) { 
 			createDriver();
 		}
