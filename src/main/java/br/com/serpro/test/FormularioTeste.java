@@ -83,7 +83,7 @@ public class FormularioTeste extends BaseTest{
 	}
 	
 	@Test
-	public void testarDeveAlerarData() {
+	public void testarDeveAlterarData() {
 		formularioPage.clicarPorTexto("01/01/2000");
 		formularioPage.clicarPorTexto("20");
 		formularioPage.clicarPorTexto("OK");
@@ -97,7 +97,12 @@ public class FormularioTeste extends BaseTest{
 		formularioPage.clicar(MobileBy.AccessibilityId("10"));
 		formularioPage.clicarPorTexto("OK");
 		Assert.assertTrue(formularioPage.existeElementoPorTexto("14:10"));
-		
 	}	
 
+	@Test
+	public void testarSeekBar() {
+		formularioPage.clicarSeekBar(0.05);
+		formularioPage.Salvar();
+//	    Assert.assertEquals("Slider: 51", formularioPage.obterSliderCadastrado());
+	}
 }
