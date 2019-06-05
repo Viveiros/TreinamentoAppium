@@ -101,8 +101,8 @@ public class FormularioTeste extends BaseTest{
 
 	@Test
 	public void testarSeekBar() {
-		formularioPage.clicarSeekBar(0.05);
+		formularioPage.clicarSeekBar(0.5);
 		formularioPage.Salvar();
-//	    Assert.assertEquals("Slider: 51", formularioPage.obterSliderCadastrado());
+	    Assert.assertEquals("Slider: 56", formularioPage.obterSliderCadastrado());
 	}
 }
