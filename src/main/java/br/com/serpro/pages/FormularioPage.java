@@ -56,7 +56,7 @@ public class FormularioPage extends BasePage{
 	}
 	public void clicarSeekBar(double posicao) {
 		int delta = 50;
-		MobileElement seek = getDriver().findElement(MobileBy.AccessibilityId("slid"));
+		MobileElement seek = (MobileElement) getDriver().findElement(MobileBy.AccessibilityId("slid"));
 		int y = seek.getLocation().y + (seek.getSize().height/2);
 //		System.out.println(y);
 		int xinicial = seek.getLocation().x + delta;
