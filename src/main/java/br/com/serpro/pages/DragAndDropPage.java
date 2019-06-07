@@ -11,7 +11,6 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.ElementOption;
-import io.appium.java_client.touch.offset.PointOption;
 
 public class DragAndDropPage extends BasePage {
 	
@@ -22,7 +21,8 @@ public class DragAndDropPage extends BasePage {
 		TouchAction action = new TouchAction(getDriver());
 
 		action.longPress(new LongPressOptions().withElement( new ElementOption().element(elOrigem)))
-			.moveTo(new LongPressOptions().withElement( new ElementOption().element(elOrigem)))
+			.moveTo(new ElementOption().element(elDestino))
+			.release()
 			.perform();
 		
 //		new TouchActions(getDriver())
