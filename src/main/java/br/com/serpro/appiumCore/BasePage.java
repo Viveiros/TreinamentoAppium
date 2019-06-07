@@ -64,16 +64,33 @@ public class BasePage {
 		 	.release()
 		 	.perform();
 	}
+	public void swipe(double inicio, double fim) {
+		Dimension size = getDriver().manage().window().getSize();
+		int y = size.height/2;
+		int start_x = (int) (size.width * inicio);
+		int end_x = (int) (size.width * fim);
+
+		 TouchAction action = new TouchAction(getDriver());
+		 WaitOptions waitOptions = new WaitOptions(); 
+		 waitOptions.withDuration(Duration.ofMillis(500));
+		 
+		 action.press(PointOption.point(start_x, y))
+		 	.waitAction(waitOptions )
+		 	.moveTo(PointOption.point(end_x, y))
+		 	.release()
+		 	.perform();
+	}
 	
-    public void scrollA(double startPercentage, double endPercentage) {
-        Dimension size = getDriver().manage().window().getSize();
-		int x = size.width/2;
-        int startPoint = (int) (size.height * startPercentage);
-        int endPoint = (int) (size.height * endPercentage);
- 
-        new TouchActions(getDriver())
-        		.scroll(x, endPoint)
-                .release().perform();
-    }
-	
+	public void scrollDown() {
+		scroll(0.9,0.1);
+	}
+	public void scrollUp() {
+		scroll(0.1,0.9);
+	}
+	public void swipeLeft() {
+		swipe(0.9,0.1);
+	}
+	public void swipeRigth() {
+		swipe(0.1,0.9);
+	}
 }

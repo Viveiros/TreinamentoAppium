@@ -12,8 +12,7 @@ public class ScrollTest extends BaseTest {
 	@Test
 	public void escolherOpcaoEscondida() {
 		
-//		menuPage.scroll(0.8, 0.1);
-		menuPage.scrollA(0.8, 0.1);
+		menuPage.scroll(0.8, 0.1);
 		esperar(1000);
 		menuPage.clicarPorTexto("Opção bem escondida");
 //		menuPage.existeElementoPorTexto("Você achou essa opção");
