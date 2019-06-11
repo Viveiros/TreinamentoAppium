@@ -34,6 +34,12 @@ public class MenuPage extends BasePage{
 	public void acessarCliques() {
 		clicarPorTexto("Cliques");
 	}
+	public void acessarSeuBarrigaHibrido() {
+		clicarPorTexto("SeuBarriga Híbrido");
+	}	
+	public void acessarSeuBarrigaNativo() {
+		clicarPorTexto("SeuBarriga Nativo");
+	}	
 	public void acessarDragNDrop() {
 		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='Formulário']")));

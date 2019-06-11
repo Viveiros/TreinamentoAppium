@@ -18,6 +18,7 @@ public class DriverFactory {
 	public static AndroidDriver getDriver(){
 		if (driver == null) { 
 			createDriver();
+//			createDriverTestObject();
 		}
 		return driver;
 	}
@@ -48,4 +49,21 @@ public class DriverFactory {
 
 	}
 
+	private static void createDriverTestObject() {
+
+		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+	    desiredCapabilities.setCapability("platformName", "Android");
+	    desiredCapabilities.setCapability("testobject_api_key", "27D6EB58E69B458E9E0C831DEB885EAB");
+	    desiredCapabilities.setCapability("automationName", "uiautomator2");
+	    desiredCapabilities.setCapability("appiumVersion", "1.13.0");
+	    
+	    try {
+			driver = new AndroidDriver(new URL("https://us1.appium.testobject.com/wd/hub"), desiredCapabilities);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+	}	
 }
