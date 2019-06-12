@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
@@ -33,6 +35,14 @@ public class BasePage {
 	}	
 	
 	public void clicarPorTexto(String texto) {
+		WebDriverWait wait = new WebDriverWait(getDriver(), 30);
+		wait.until(ExpectedConditions.attributeToBe(getDriver().findElement(By.xpath("//*[@text='"+texto+"']")), "Enabled", "true"));
+//		System.out.println("     Text:"+getDriver().findElement(By.xpath("//*[@text='"+texto+"']")).getText());
+//		System.out.println("  Enabled:"+getDriver().findElement(By.xpath("//*[@text='"+texto+"']")).isEnabled());
+//		System.out.println("Displayed:"+getDriver().findElement(By.xpath("//*[@text='"+texto+"']")).isDisplayed());
+//		System.out.println(" Selected:"+getDriver().findElement(By.xpath("//*[@text='"+texto+"']")).isSelected());
+//		System.out.println("  TagName:"+getDriver().findElement(By.xpath("//*[@text='"+texto+"']")).getTagName());
+//		System.out.println("---------------");
 	    getDriver().findElement(By.xpath("//*[@text='"+texto+"']")).click();
 	}
 	
@@ -86,6 +96,35 @@ public class BasePage {
 		 	.perform();
 	}
 	
+	public void swipeElment(MobileElement el, double inicio, double fim) {
+		Dimension size = getDriver().manage().window().getSize();
+		Dimension sizeEl = el.getSize();
+		int y = size.height/2;
+		int start_x = (int) (sizeEl.width * inicio);
+		int end_x = (int) (sizeEl.width * fim);
+		
+//		System.out.println("   Size:"+size);
+//		System.out.println(" SizeEl:"+sizeEl);
+//		System.out.println("      y:"+y);
+//		System.out.println("start_x:"+start_x);
+//		System.out.println("  end_x:"+end_x);
+		
+		TouchAction action = new TouchAction(getDriver());
+		 WaitOptions waitOptions = new WaitOptions(); 
+		 waitOptions.withDuration(Duration.ofMillis(500));
+		 
+		 action.press(new ElementOption().element(el))
+//		 action.press(PointOption.point(start_x, y))
+		 	.waitAction(waitOptions )
+		 	.moveTo(PointOption.point(end_x, y))
+		 	.release()
+		 	.perform();		 	
+//		 action.press(PointOption.point(start_x, y))
+//		 	.waitAction(waitOptions )
+//		 	.moveTo(PointOption.point(end_x, y))
+//		 	.release()
+//		 	.perform();
+	}	
 	public void scrollDown() {
 		scroll(0.9,0.1);
 	}

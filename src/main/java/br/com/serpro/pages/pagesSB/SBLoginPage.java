@@ -1,4 +1,4 @@
-package br.com.serpro.pages;
+package br.com.serpro.pages.pagesSB;
 
 import org.openqa.selenium.By;
 
